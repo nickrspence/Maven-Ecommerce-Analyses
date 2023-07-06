@@ -1,6 +1,6 @@
 **Ecommerce Company Performance Analysis**
 
-**[Brief]**
+**[Brief]{.underline}**
 
 Maven Analytics created a fictitious eCommerce retail company named
 Maven Factory with a database storing 3 years of business data. I will
@@ -50,43 +50,56 @@ to demonstrate long term growth. Analyses include:
 -   Trending for repeat vs. first time website visitors on sessions,
     order conversion rate, and revenue per visit
 
-**[Data Set]**
+**[Data Set]{.underline}**
 
--   6-table relational database schema -- see here.
+-   6-table relational database schema -- [see
+    here.](Maven_SQL_project/Maven_database_schema.png)
 
--   Maven Factory sales data from '2012-03-19' to '2015-03-19' -- see
-    here.
+-   Maven Factory database from '2012-03-19' to '2015-03-19' -- [see
+    here.](Maven_SQL_project/mavenfactory_vApril2022.sql)
 
-**[Tools]}**
+**[Tools]{.underline}**
 
--   MySQL -- view SQL scripts
+-   MySQL -- [view SQL
+    scripts](https://github.com/nickrspence/eCommerce-company-performance-analysis/blob/main/FINAL_maven_sql_project.sql)
 
 -   Tableau for data visualization
 
-**[Tableau Visualizations]**
+**[Tableau Visualizations]{.underline}**
+
+-   
 
 -   [SEGMENT 1 dashboard
-    here](https://public.tableau.com/views/Nick_Spence_Data_Portfolio/Segment1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
--   SEGMENT 2 dashboard here
+    here](https://public.tableau.com/shared/5N4D4Y2JF?:display_count=n&:origin=viz_share_link)[SEGMENT
+    2 dashboard
+    here](https://public.tableau.com/views/Maven_Dashboard_2/Segment2?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
 -   Refer to the SQL script for visualization reference numbers:
 
-    -   Query 1.1 viz here
+    -   [Query 1.1 viz
+        here](https://public.tableau.com/views/Viz_1_1_16886685366820/Salesvolumebroad_DATE?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 1.2 viz here
+    -   [Query 1.2 viz
+        here](https://public.tableau.com/views/Viz_1_2_16886686023040/Salesvolumebycampaign_DATE?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 1.3 viz here
+    -   [Query 1.3 viz
+        here](https://public.tableau.com/views/Maven_Viz_1_3/Hourlysessionsconv?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 1.4 viz here
+    -   [Query 1.4 viz
+        here](https://public.tableau.com/views/Maven_Viz_1_4/Websitefunnelanalysis?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 2.1 viz here
+    -   [Query 2.1 viz
+        here](https://public.tableau.com/views/Maven_Viz_2_1/Wholesalessummary?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 2.2 viz here
+    -   [Query 2.2 viz
+        here](https://public.tableau.com/views/Maven_Viz_2_2/Relativeorganicsearchvolume?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 2.3 viz here
+    -   [Query 2.3 viz
+        here](https://public.tableau.com/views/Maven_Viz_2_3/Crosssellanalysis?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
-    -   Query 2.4 viz here
+    -   [Query 2.4 viz
+        here](https://public.tableau.com/views/Maven_Viz_2_4/Repeatvisitors?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
+
 
 
 
