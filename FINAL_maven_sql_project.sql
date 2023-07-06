@@ -1,5 +1,7 @@
 
 /*
+** All Tableau visualizations for individual query outputs are linked in the README, along with both segment dashboards **
+
 **********************************
 FIRST SEGMENT EXPLORATORY ANALYSIS
 **********************************
