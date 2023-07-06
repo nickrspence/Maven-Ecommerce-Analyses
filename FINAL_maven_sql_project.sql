@@ -19,41 +19,39 @@ OUTPUT
    
 SELECT
 	YEAR(website_sessions.created_at) AS year,
-    QUARTER(website_sessions.created_at) AS quarter,
-    COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
-    COUNT(DISTINCT orders.order_id) AS orders,
-    COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
+    	QUARTER(website_sessions.created_at) AS quarter,
+    	COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
+    	COUNT(DISTINCT orders.order_id) AS orders,
+    	COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
 FROM
 	website_sessions LEFT JOIN orders
-    ON website_sessions.website_session_id = orders.website_session_id
+   	ON website_sessions.website_session_id = orders.website_session_id
 WHERE
 	website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
-GROUP BY
-	1,2;
+GROUP BY 1,2;
 
-Yr		Qtr		sessions	orders	conv_rate
+Yr	Qtr		sessions	orders		conv_rate
 2012	2		11433		347		0.0304
 2012	3		16892		684		0.0405
-2012	4		32266		1495	0.0463
-2013	1		19833		1273	0.0642
-2013	2		24745		1718	0.0694
-2013	3		27663		1840	0.0665
+2012	4		32266		1495		0.0463
+2013	1		19833		1273		0.0642
+2013	2		24745		1718		0.0694
+2013	3		27663		1840		0.0665
 ;
 
 -- Below is the same query with date format modifications for better Tableau visualization
 
 SELECT
 	DATE(website_sessions.created_at) AS date,
-    COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
-    COUNT(DISTINCT orders.order_id) AS orders,
-    COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
+    	COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
+    	COUNT(DISTINCT orders.order_id) AS orders,
+    	COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
 FROM
 	website_sessions LEFT JOIN orders
-    ON website_sessions.website_session_id = orders.website_session_id
+    	ON website_sessions.website_session_id = orders.website_session_id
 WHERE
 	website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
-GROUP BY
-	1;
+GROUP BY 1;
 
 /*----------------------------------------------------------------------------------------------------------------------------------
 2) I would like to break down the previous data by our two paid advertising sources (gsearch & bsearch) in order to identify
@@ -63,7 +61,7 @@ GROUP BY
 
 OUTPUT
 	- Looks like about 80% of our website traffic volume is coming from our gsearch paid ads.
-    - However the conversion rates for both campaigns peaked at about 7%. We may want to run a follow up test that breaks out
+	- However the conversion rates for both campaigns peaked at about 7%. We may want to run a follow up test that breaks out
 		both gsearch and bsearch into individual advertisements in order to identify where the most session volume is coming from.
 	- We may also suggest to the marketing director to increase bids on our bsearch campaigns in order to increase session volume, 
 		then run a follow up test to evaluate.
@@ -71,51 +69,49 @@ OUTPUT
 
 SELECT
 	YEAR(website_sessions.created_at) AS year,
-    QUARTER(website_sessions.created_at) AS quarter,
-    COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN website_sessions.website_session_id ELSE NULL END) AS gsearch_sessions,
+    	QUARTER(website_sessions.created_at) AS quarter,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN website_sessions.website_session_id ELSE NULL END) AS gsearch_sessions,
 	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN orders.order_id ELSE NULL END) AS gsearch_orders,
-    COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN orders.order_id ELSE NULL END) /
+    	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN orders.order_id ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN website_sessions.website_session_id ELSE NULL END) AS gsearch_order_conv_rate,
-    COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN website_sessions.website_session_id ELSE NULL END) AS bsearch_sessions,
-    COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN orders.order_id ELSE NULL END) AS bsearch_orders,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN website_sessions.website_session_id ELSE NULL END) AS bsearch_sessions,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN orders.order_id ELSE NULL END) AS bsearch_orders,
 	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN orders.order_id ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN website_sessions.website_session_id ELSE NULL END) AS bsearch_order_conv_rate
 FROM
 	website_sessions LEFT JOIN orders
-    ON website_sessions.website_session_id = orders.website_session_id
+   	ON website_sessions.website_session_id = orders.website_session_id
 WHERE
 	website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
-GROUP BY
-	1,2;
+GROUP BY 1,2;
     
-Yr		Qtr		gsearch_sessions	gsearch_orders		gsearch_order_conv_rate		bsearch_sessions	bsearch_orders		bsearch_order_conv_rate
-2012	2		10562				310					0.0294						61					1					0.0164
-2012	3		13179				517					0.0392						2188				95					0.0434
-2012	4		22287				984					0.0442						6578				328					0.0499
-2013	1		13764				853					0.0620						2926				204					0.0697
-2013	2		17598				1210				0.0688						3766				255					0.0677
-2013	3		19465				1255				0.0645						3932				275					0.0699
+Yr	Qtr		gsearch_sessions	gsearch_orders		gsearch_order_conv_rate		bsearch_sessions	bsearch_orders		bsearch_order_conv_rate
+2012	2		10562			310			0.0294				61			1			0.0164
+2012	3		13179			517			0.0392				2188			95			0.0434
+2012	4		22287			984			0.0442				6578			328			0.0499
+2013	1		13764			853			0.0620				2926			204			0.0697
+2013	2		17598			1210			0.0688				3766			255			0.0677
+2013	3		19465			1255			0.0645				3932			275			0.0699
 ;
 
 -- Again, below is the same query date formatted for Tableau visualization
 
 SELECT
 	DATE(website_sessions.created_at) AS date,
-    COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN website_sessions.website_session_id ELSE NULL END) AS gsearch_sessions,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN website_sessions.website_session_id ELSE NULL END) AS gsearch_sessions,
 	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN orders.order_id ELSE NULL END) AS gsearch_orders,
-    COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN orders.order_id ELSE NULL END) /
+    	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN orders.order_id ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' THEN website_sessions.website_session_id ELSE NULL END) AS gsearch_order_conv_rate,
-    COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN website_sessions.website_session_id ELSE NULL END) AS bsearch_sessions,
-    COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN orders.order_id ELSE NULL END) AS bsearch_orders,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN website_sessions.website_session_id ELSE NULL END) AS bsearch_sessions,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN orders.order_id ELSE NULL END) AS bsearch_orders,
 	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN orders.order_id ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' THEN website_sessions.website_session_id ELSE NULL END) AS bsearch_order_conv_rate
 FROM
 	website_sessions LEFT JOIN orders
-    ON website_sessions.website_session_id = orders.website_session_id
+    	ON website_sessions.website_session_id = orders.website_session_id
 WHERE
 	website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
-GROUP BY
-	1;
+GROUP BY 1;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
 3) I would like to dive deeper into our gsearch advertising campaign and look at which times of the day show more or less activity.
@@ -127,49 +123,48 @@ OUTPUT
 	- Looks like website traffic is busiest from 10am to 4pm, but conversion rates are fairly stable throughout the day.
 		I would recommend that our marketing director increase our bids during those time periods. We might also want to notify
 		the customer service team that they may want to increase their live customer support chat agents during those time periods 
-        in order to handle the increased website activity.
+       		in order to handle the increased website activity.
 -------------------------------------------------------------------------------------------------------------------------------------*/
 
 SELECT
 	HOUR(website_sessions.created_at) AS hour,
-    COUNT(DISTINCT website_sessions.website_session_id) AS gsearch_sessions,
-    COUNT(DISTINCT orders.order_id) AS gsearch_orders,
-    COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
+   	COUNT(DISTINCT website_sessions.website_session_id) AS gsearch_sessions,
+    	COUNT(DISTINCT orders.order_id) AS gsearch_orders,
+    	COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
 FROM
 	website_sessions LEFT JOIN orders
-    ON website_sessions.website_session_id = orders.website_session_id
+   	ON website_sessions.website_session_id = orders.website_session_id
 WHERE
 	website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
 AND
 	utm_source = 'gsearch'
-GROUP BY
-	1;
+GROUP BY 1;
     
-hour	gsearch_sessions	gsearch_orders	conv_rate
-0		2471				129				0.0522
-1		1972				82				0.0416
-2		1750				105				0.0600
-3		1615				88				0.0545
-4		1646				90				0.0547
-5		1680				83				0.0494
-6		2094				103				0.0492
-7		2551				139				0.0545
-8		3745				179				0.0478
-9		5154				266				0.0516
-10		6198				310				0.0500
-11		6523				329				0.0504
-12		6544				321				0.0491
-13		6347				331				0.0522
-14		6209				356				0.0573
-15		6324				346				0.0547
-16		6278				345				0.0550
-17		5534				305				0.0551
-18		4599				253				0.0550
-19		3983				216				0.0542
-20		3709				200				0.0539
-21		3629				208				0.0573
-22		3302				182				0.0551
-23		2998				163				0.0544
+hour	gsearch_sessions	gsearch_orders		conv_rate
+0	2471			129			0.0522
+1	1972			82			0.0416
+2	1750			105			0.0600
+3	1615			88			0.0545
+4	1646			90			0.0547
+5	1680			83			0.0494
+6	2094			103			0.0492
+7	2551			139			0.0545
+8	3745			179			0.0478
+9	5154			266			0.0516
+10	6198			310			0.0500
+11	6523			329			0.0504
+12	6544			321			0.0491
+13	6347			331			0.0522
+14	6209			356			0.0573
+15	6324			346			0.0547
+16	6278			345			0.0550
+17	5534			305			0.0551
+18	4599			253			0.0550
+19	3983			216			0.0542
+20	3709			200			0.0539
+21	3629			208			0.0573
+22	3302			182			0.0551
+23	2998			163			0.0544
 ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
@@ -181,7 +176,7 @@ OUTPUT:
 		I know the marketing team tested a few different landing pages, so we can dig deeper to see which performed best.
 	- Another interesting finding is the rather low cart-to-shipping page CTR. It has about a 45% conversion rate,
 		while the other pages (e.g. product-to-cart, shipping-to-billing) have higher CTRs at 60-70%.
-        I would likely recommend to our website manager to test a different cart page in order to encourage buyers to click through to shipping.
+        	I would likely recommend to our website manager to test a different cart page in order to encourage buyers to click through to shipping.
  
 	** There is some missing data for the last two quarters of this time period shown by 0 billing sessions, which greatly skewed those pieces of data.
 -------------------------------------------------------------------------------------------------------------------------------------*/
@@ -191,11 +186,11 @@ OUTPUT:
 CREATE TEMPORARY TABLE all_pvs
 SELECT
 	YEAR(website_pageviews.created_at) AS year,
-    QUARTER(website_pageviews.created_at) AS quarter,
+    	QUARTER(website_pageviews.created_at) AS quarter,
 	website_pageviews.website_session_id,
-    website_pageview_id,
-    pageview_url,
-    order_id
+    	website_pageview_id,
+    	pageview_url,
+    	order_id
 FROM
 	website_pageviews LEFT JOIN orders
 	ON website_pageviews.website_session_id = orders.website_session_id
@@ -209,15 +204,15 @@ SELECT * FROM all_pvs;
 CREATE TEMPORARY TABLE all_pvs_broken_out
 SELECT
 	year,
-    quarter,
+	quarter,
 	website_session_id,
-    CASE WHEN pageview_url IN('/home', '/lander-1', '/lander-2', '/lander-3') THEN 1 ELSE 0 END AS landing_page,
-    CASE WHEN pageview_url = '/products' THEN 1 ELSE 0 END AS to_products_page,
+	CASE WHEN pageview_url IN('/home', '/lander-1', '/lander-2', '/lander-3') THEN 1 ELSE 0 END AS landing_page,
+	CASE WHEN pageview_url = '/products' THEN 1 ELSE 0 END AS to_products_page,
 	CASE WHEN pageview_url IN('/the-original-mr-fuzzy', '/the-forever-love-bear') THEN 1 ELSE 0 END AS to_product_detail,
-    CASE WHEN pageview_url = '/cart' THEN 1 ELSE 0 END AS to_cart,
-    CASE WHEN pageview_url = '/shipping' THEN 1 ELSE 0 END AS to_shipping,
-    CASE WHEN pageview_url = '/billing' THEN 1 ELSE 0 END AS to_billing,
-    CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END AS order_placed
+   	CASE WHEN pageview_url = '/cart' THEN 1 ELSE 0 END AS to_cart,
+    	CASE WHEN pageview_url = '/shipping' THEN 1 ELSE 0 END AS to_shipping,
+    	CASE WHEN pageview_url = '/billing' THEN 1 ELSE 0 END AS to_billing,
+    	CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END AS order_placed
 FROM
 	all_pvs;
     
@@ -228,15 +223,15 @@ SELECT * FROM all_pvs_broken_out;
 CREATE TEMPORARY TABLE all_pvs_broken_out_grouped
 SELECT
 	year,
-    quarter,
+    	quarter,
 	website_session_id,
-    MAX(landing_page) AS landing_page,
+    	MAX(landing_page) AS landing_page,
 	MAX(to_products_page) AS to_products_page,
-    MAX(to_product_detail) AS to_product_detail,
-    MAX(to_cart) AS to_cart,
-    MAX(to_shipping) AS to_shipping,
-    MAX(to_billing) AS to_billing,
-    MAX(order_placed) AS order_placed
+    	MAX(to_product_detail) AS to_product_detail,
+    	MAX(to_cart) AS to_cart,
+    	MAX(to_shipping) AS to_shipping,
+    	MAX(to_billing) AS to_billing,
+    	MAX(order_placed) AS order_placed
 FROM
 	all_pvs_broken_out
 GROUP BY 1,2,3;
@@ -247,37 +242,37 @@ SELECT * FROM all_pvs_broken_out_grouped;
 
 SELECT
 	year,
-    quarter,
-    COUNT(DISTINCT CASE WHEN landing_page = 1 THEN website_session_id ELSE NULL END) AS landing_page_sessions,
+    	quarter,
+    	COUNT(DISTINCT CASE WHEN landing_page = 1 THEN website_session_id ELSE NULL END) AS landing_page_sessions,
 	COUNT(DISTINCT CASE WHEN to_products_page = 1 THEN website_session_id ELSE NULL END) AS to_products_page,
 	COUNT(DISTINCT CASE WHEN to_products_page = 1 THEN website_session_id ELSE NULL END) / 
 		COUNT(DISTINCT CASE WHEN landing_page = 1 THEN website_session_id ELSE NULL END) AS product_page_conv_rate,
-    COUNT(DISTINCT CASE WHEN to_product_detail = 1 THEN website_session_id ELSE NULL END) AS product_detail_sessions,
+    	COUNT(DISTINCT CASE WHEN to_product_detail = 1 THEN website_session_id ELSE NULL END) AS product_detail_sessions,
 	COUNT(DISTINCT CASE WHEN to_product_detail = 1 THEN website_session_id ELSE NULL END) / 
-        COUNT(DISTINCT CASE WHEN to_products_page = 1 THEN website_session_id ELSE NULL END) AS product_detail_conv_rate,
+        	COUNT(DISTINCT CASE WHEN to_products_page = 1 THEN website_session_id ELSE NULL END) AS product_detail_conv_rate,
 	COUNT(DISTINCT CASE WHEN to_cart = 1 THEN website_session_id ELSE NULL END) AS cart_sessions,
 	COUNT(DISTINCT CASE WHEN to_cart = 1 THEN website_session_id ELSE NULL END) / 
-        COUNT(DISTINCT CASE WHEN to_product_detail = 1 THEN website_session_id ELSE NULL END) AS cart_conv_rate,
-    COUNT(DISTINCT CASE WHEN to_shipping = 1 THEN website_session_id ELSE NULL END) AS shipping_sessions,
+        	COUNT(DISTINCT CASE WHEN to_product_detail = 1 THEN website_session_id ELSE NULL END) AS cart_conv_rate,
+   	COUNT(DISTINCT CASE WHEN to_shipping = 1 THEN website_session_id ELSE NULL END) AS shipping_sessions,
 	COUNT(DISTINCT CASE WHEN to_shipping = 1 THEN website_session_id ELSE NULL END) / 
-         COUNT(DISTINCT CASE WHEN to_cart = 1 THEN website_session_id ELSE NULL END) AS shipping_conv_rate,
-    COUNT(DISTINCT CASE WHEN to_billing = 1 THEN website_session_id ELSE NULL END) AS billing_sessions,
+        	COUNT(DISTINCT CASE WHEN to_cart = 1 THEN website_session_id ELSE NULL END) AS shipping_conv_rate,
+    	COUNT(DISTINCT CASE WHEN to_billing = 1 THEN website_session_id ELSE NULL END) AS billing_sessions,
 	COUNT(DISTINCT CASE WHEN to_billing = 1 THEN website_session_id ELSE NULL END) / 
 		COUNT(DISTINCT CASE WHEN to_shipping = 1 THEN website_session_id ELSE NULL END) AS billing_conv_rate,
-    COUNT(DISTINCT CASE WHEN order_placed = 1 THEN website_session_id ELSE NULL END) AS orders_placed,
+    	COUNT(DISTINCT CASE WHEN order_placed = 1 THEN website_session_id ELSE NULL END) AS orders_placed,
 	COUNT(DISTINCT CASE WHEN order_placed = 1 THEN website_session_id ELSE NULL END) / 
-         COUNT(DISTINCT CASE WHEN to_billing = 1 THEN website_session_id ELSE NULL END) AS order_conv_rate
+        	COUNT(DISTINCT CASE WHEN to_billing = 1 THEN website_session_id ELSE NULL END) AS order_conv_rate
 FROM
 	all_pvs_broken_out_grouped
 GROUP BY 1,2;
    
-Yr		Qtr		landing_sessions	products_sessions	products_conv_rate	product_detail_sessions		product_detail_conv_rate	cart_sessions	cart_conv_rate	shipping_sessions	shipping_conv_rate	billing_sessions	billing_conv_rate	orders_placed	order_conv_rate
-2012	2		11433				4783				0.4184				3411						0.7132						1473			0.4318			979					0.6646				813					0.8304				347				0.4268
-2012	3		16892				8156				0.4828				5894						0.7227						2582			0.4381			1746				0.6762				1221				0.6993				684				0.5602
-2012	4		32266				15786				0.4892				11417						0.7232						4952			0.4337			3425				0.6916				1407				0.4108				1495			1.0625
-2013	1		19833				10436				0.5262				7974						0.7641						3615			0.4533			2494				0.6899				53					0.0213				1273			24.0189
-2013	2		24745				13646				0.5515				10501						0.7695						4752			0.4525			3269				0.6879				0					0.0000				1718	
-2013	3		27663				15645				0.5656				11913						0.7615						5329			0.4473			3547				0.6656				0					0.0000				1841
+Yr	Qtr		landing_sessions	products_sessions	products_conv_rate	product_detail_sessions		product_detail_conv_rate	cart_sessions	cart_conv_rate	shipping_sessions	shipping_conv_rate	billing_sessions	billing_conv_rate	orders_placed	order_conv_rate
+2012	2		11433			4783			0.4184			3411				0.7132				1473		0.4318		979			0.6646			813			0.8304			347		0.4268
+2012	3		16892			8156			0.4828			5894				0.7227				2582		0.4381		1746			0.6762			1221			0.6993			684		0.5602
+2012	4		32266			15786			0.4892			11417				0.7232				4952		0.4337		3425			0.6916			1407			0.4108			1495		1.0625
+2013	1		19833			10436			0.5262			7974				0.7641				3615		0.4533		2494			0.6899			53			0.0213			1273		24.0189
+2013	2		24745			13646			0.5515			10501				0.7695				4752		0.4525		3269			0.6879			0			0.0000			1718	
+2013	3		27663			15645			0.5656			11913				0.7615				5329		0.4473		3547			0.6656			0			0.0000			1841
 ;
 	
 -- Below I have re-written the same queries with slight modifications in order to create a lump sum funnel analysis Tablaeu viz
@@ -285,9 +280,9 @@ Yr		Qtr		landing_sessions	products_sessions	products_conv_rate	product_detail_se
 CREATE TEMPORARY TABLE all_pvs_funnel
 SELECT
 	website_pageviews.website_session_id,
-    website_pageview_id,
-    pageview_url,
-    order_id
+    	website_pageview_id,
+    	pageview_url,
+    	order_id
 FROM
 	website_pageviews LEFT JOIN orders
 	ON website_pageviews.website_session_id = orders.website_session_id
@@ -300,13 +295,13 @@ SELECT * FROM all_pvs_funnel;
 CREATE TEMPORARY TABLE all_pvs_broken_out_funnel
 SELECT
 	website_session_id,
-    CASE WHEN pageview_url IN('/home', '/lander-1', '/lander-2', '/lander-3') THEN 1 ELSE 0 END AS landing_page,
-    CASE WHEN pageview_url = '/products' THEN 1 ELSE 0 END AS to_products_page,
+    	CASE WHEN pageview_url IN('/home', '/lander-1', '/lander-2', '/lander-3') THEN 1 ELSE 0 END AS landing_page,
+    	CASE WHEN pageview_url = '/products' THEN 1 ELSE 0 END AS to_products_page,
 	CASE WHEN pageview_url IN('/the-original-mr-fuzzy', '/the-forever-love-bear') THEN 1 ELSE 0 END AS to_product_detail,
-    CASE WHEN pageview_url = '/cart' THEN 1 ELSE 0 END AS to_cart,
-    CASE WHEN pageview_url = '/shipping' THEN 1 ELSE 0 END AS to_shipping,
-    CASE WHEN pageview_url = '/billing' THEN 1 ELSE 0 END AS to_billing,
-    CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END AS order_placed
+    	CASE WHEN pageview_url = '/cart' THEN 1 ELSE 0 END AS to_cart,
+    	CASE WHEN pageview_url = '/shipping' THEN 1 ELSE 0 END AS to_shipping,
+    	CASE WHEN pageview_url = '/billing' THEN 1 ELSE 0 END AS to_billing,
+    	CASE WHEN order_id IS NOT NULL THEN 1 ELSE 0 END AS order_placed
 FROM
 	all_pvs_funnel;
     
@@ -314,27 +309,27 @@ SELECT * FROM all_pvs_broken_out_funnel;
 
 SELECT
 	CASE WHEN landing_page = 1 THEN 'landing_pg'
-		 WHEN to_products_page = 1 THEN 'products_pg'
-		 WHEN to_product_detail = 1 THEN 'product_detail_pg'
-		 WHEN to_cart = 1 THEN 'cart_pg'
-		 WHEN to_shipping = 1 THEN 'shipping_pg'
-		 WHEN to_billing = 1 THEN 'order_placed'
-		 WHEN order_placed = 1 THEN 'billing_pg'
+		WHEN to_products_page = 1 THEN 'products_pg'
+		WHEN to_product_detail = 1 THEN 'product_detail_pg'
+		WHEN to_cart = 1 THEN 'cart_pg'
+		WHEN to_shipping = 1 THEN 'shipping_pg'
+		WHEN to_billing = 1 THEN 'order_placed'
+		WHEN order_placed = 1 THEN 'billing_pg'
 	ELSE NULL END AS website_pg,
-    COUNT(DISTINCT website_session_id) AS sessions
+    	COUNT(DISTINCT website_session_id) AS sessions
 FROM 
 	all_pvs_broken_out_funnel
 GROUP BY 1;
 
-website_pg				sessions
+website_pg		sessions
 
-landing_pg				132832
-products_pg				68452
-product_detail_pg		51110
-cart_pg					22703
-shipping_pg				15460
-billing_pg				7357
-order_placed			349
+landing_pg		132832
+products_pg		68452
+product_detail_pg	51110
+cart_pg			22703
+shipping_pg		15460
+billing_pg		7357
+order_placed		349
 ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
@@ -351,8 +346,8 @@ OUTPUT
 
 SELECT
 	website_session_id,
-    website_pageview_id,
-    pageview_url
+    	website_pageview_id,
+    	pageview_url
 FROM
 	website_pageviews
 WHERE
@@ -362,15 +357,15 @@ AND
 
 -- Next I used the above code as a subquery, and then flagged and labeled each pageview.
 
-DROP TABLE landing_product_broken_out;
+
 CREATE TEMPORARY TABLE landing_product_broken_out
 SELECT
 	website_session_id,
-    CASE WHEN pageview_url = '/home' THEN 1 ELSE 0 END AS lander_0,
+    	CASE WHEN pageview_url = '/home' THEN 1 ELSE 0 END AS lander_0,
 	CASE WHEN pageview_url = '/lander-1' THEN 1 ELSE 0 END AS lander_1,
-    CASE WHEN pageview_url = '/lander-2' THEN 1 ELSE 0 END AS lander_2,
-    CASE WHEN pageview_url = '/lander-3' THEN 1 ELSE 0 END AS lander_3,
-    CASE WHEN pageview_url = '/products' THEN 1 ELSE 0 END AS products_page
+    	CASE WHEN pageview_url = '/lander-2' THEN 1 ELSE 0 END AS lander_2,
+    	CASE WHEN pageview_url = '/lander-3' THEN 1 ELSE 0 END AS lander_3,
+    	CASE WHEN pageview_url = '/products' THEN 1 ELSE 0 END AS products_page
 FROM
 	(
 	SELECT
@@ -389,15 +384,15 @@ SELECT * FROM landing_product_broken_out;
 
 -- Next I grouped by website_session_id in order to reveal how many landing page visits made it to the products page.
 
-DROP TABLE grouped_sessions;
+
 CREATE TEMPORARY TABLE grouped_sessions
 SELECT
 	website_session_id,
-    MAX(lander_0) AS lander_0,
+   	MAX(lander_0) AS lander_0,
 	MAX(lander_1) AS lander_1,
-    MAX(lander_2) AS lander_2,
-    MAX(lander_3) AS lander_3,
-    MAX(products_page) AS products_page
+    	MAX(lander_2) AS lander_2,
+    	MAX(lander_3) AS lander_3,
+    	MAX(products_page) AS products_page
 FROM
 	landing_product_broken_out
 GROUP BY 1;
@@ -408,23 +403,23 @@ SELECT * FROM grouped_sessions;
 
 SELECT
 	CASE WHEN lander_0 = 1 THEN 'lander_0'
-		 WHEN lander_1 = 1 THEN 'lander_1'
-         WHEN lander_2 = 1 THEN 'lander_2'
-         WHEN lander_3 = 1 THEN 'lander_3'
+		WHEN lander_1 = 1 THEN 'lander_1'
+         	WHEN lander_2 = 1 THEN 'lander_2'
+         	WHEN lander_3 = 1 THEN 'lander_3'
 	ELSE NULL END AS landing_page,
-    COUNT(DISTINCT website_session_id) AS sessions,
-    COUNT(DISTINCT CASE WHEN products_page = 1 THEN website_session_id ELSE NULL END) AS to_product_page,
-    COUNT(DISTINCT CASE WHEN products_page = 1 THEN website_session_id ELSE NULL END) /
+   	COUNT(DISTINCT website_session_id) AS sessions,
+    	COUNT(DISTINCT CASE WHEN products_page = 1 THEN website_session_id ELSE NULL END) AS to_product_page,
+    	COUNT(DISTINCT CASE WHEN products_page = 1 THEN website_session_id ELSE NULL END) /
 	COUNT(DISTINCT website_session_id) AS landing_page_CTR
 FROM
 	grouped_sessions
 GROUP BY 1;
 
 landing_page	sessions	to_products_page	landing_page_CTR
-lander_0		35905		19417				0.5408
-lander_1		47574		22244				0.4676
-lander_2		44062		24031				0.5454
-lander_3		5291		2760				0.5216
+lander_0	35905		19417			0.5408
+lander_1	47574		22244			0.4676
+lander_2	44062		24031			0.5454
+lander_3	5291		2760			0.5216
 ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
@@ -439,13 +434,14 @@ OUTPUT
 
 SELECT
 	device_type,
-    COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
-    COUNT(DISTINCT orders.order_id) AS orders,
-    COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
+    	COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
+    	COUNT(DISTINCT orders.order_id) AS orders,
+    	COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
 FROM
 	website_sessions LEFT JOIN orders
-    ON website_sessions.website_session_id = orders.website_session_id
-WHERE website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
+    	ON website_sessions.website_session_id = orders.website_session_id
+WHERE
+	website_sessions.created_at BETWEEN '2012-04-01' AND '2013-9-31'
 GROUP BY 1;
 
 device_type		sessions	orders	conv_rate
@@ -470,11 +466,11 @@ OUTPUT
 
 SELECT
 	YEAR(website_sessions.created_at) AS year,
-    QUARTER(website_sessions.created_at) AS qtr,
-    COUNT(website_sessions.website_session_id) AS sessions,
-    COUNT(order_id) AS orders,
-    COUNT(order_id) / COUNT(website_sessions.website_session_id) AS conv_rate,
-    ROUND(SUM(price_usd) / COUNT(order_id), 2) AS rev_per_order,
+    	QUARTER(website_sessions.created_at) AS qtr,
+    	COUNT(website_sessions.website_session_id) AS sessions,
+    	COUNT(order_id) AS orders,
+   	 COUNT(order_id) / COUNT(website_sessions.website_session_id) AS conv_rate,
+    	ROUND(SUM(price_usd) / COUNT(order_id), 2) AS rev_per_order,
 	ROUND(SUM(price_usd) / COUNT(website_sessions.website_session_id), 2) AS rev_per_session
 FROM
 	website_sessions LEFT JOIN orders
@@ -483,18 +479,18 @@ WHERE
 	website_sessions.created_at BETWEEN '2012-04-01' AND '2014-12-31'
 GROUP BY 1,2;
 
-Yr		Qtr		sessions	orders	conv_rate	rev_per_order	rev_per_session
-2012	2		11433		347		0.0304		49.99			1.52
-2012	3		16892		684		0.0405		49.99			2.02
-2012	4		32266		1495	0.0463		49.99			2.32
-2013	1		19833		1273	0.0642		52.14			3.35
-2013	2		24745		1718	0.0694		51.54			3.58
-2013	3		27663		1840	0.0665		51.73			3.44
-2013	4		40540		2616	0.0645		54.72			3.53
-2014	1		46779		3069	0.0656		62.16			4.08
-2014	2		53129		3848	0.0724		64.37			4.66
-2014	3		57141		4035	0.0706		64.49			4.55
-2014	4		75434		5836	0.0774		63.80			4.94
+Yr	Qtr	sessions	orders	conv_rate	rev_per_order	rev_per_session
+2012	2	11433		347	0.0304		49.99		1.52
+2012	3	16892		684	0.0405		49.99		2.02
+2012	4	32266		1495	0.0463		49.99		2.32
+2013	1	19833		1273	0.0642		52.14		3.35
+2013	2	24745		1718	0.0694		51.54		3.58
+2013	3	27663		1840	0.0665		51.73		3.44
+2013	4	40540		2616	0.0645		54.72		3.53
+2014	1	46779		3069	0.0656		62.16		4.08
+2014	2	53129		3848	0.0724		64.37		4.66
+2014	3	57141		4035	0.0706		64.49		4.55
+2014	4	75434		5836	0.0774		63.80		4.94
 ;
 
 /* -------------------------------------------------------------------------------------------------------------------------------------
@@ -506,19 +502,19 @@ Yr		Qtr		sessions	orders	conv_rate	rev_per_order	rev_per_session
     
 OUTPUT
 	- Terrific! It looks like our organic website search volume have grown at the same rate as our paid website taffic.
-*/
+-------------------------------------------------------------------------------------------------------------------------------------*/
 
 -- Here I pulled all our website traffic JOINED to our orders data.
 
 CREATE TEMPORARY TABLE channels
 SELECT
 	YEAR(website_sessions.created_at) as Yr,
-    QUARTER(website_sessions.created_at) as Qtr,
-    website_sessions.website_session_id,
-    utm_source,
-    utm_campaign,
-    http_referer,
-    order_id
+    	QUARTER(website_sessions.created_at) as Qtr,
+    	website_sessions.website_session_id,
+    	utm_source,
+    	utm_campaign,
+    	http_referer,
+    	order_id
 FROM
 	website_sessions LEFT JOIN orders
 	ON website_sessions.website_session_id = orders.website_session_id
@@ -531,12 +527,12 @@ WHERE
 
 SELECT
 	Yr,
-    Qtr,
-    COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' AND utm_campaign = 'nonbrand' THEN order_id ELSE NULL END) AS gsearch_nonbrand,
+    	Qtr,
+    	COUNT(DISTINCT CASE WHEN utm_source = 'gsearch' AND utm_campaign = 'nonbrand' THEN order_id ELSE NULL END) AS gsearch_nonbrand,
 	COUNT(DISTINCT CASE WHEN utm_source = 'bsearch' AND utm_campaign = 'nonbrand' THEN order_id ELSE NULL END) AS bsearch_nonbrand,
-    COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN order_id ELSE NULL END) AS brand_overall,
-    COUNT(DISTINCT CASE WHEN utm_source IS NULL AND http_referer IS NOT NULL THEN order_id ELSE NULL END) AS organic_search,
-    COUNT(DISTINCT CASE WHEN http_referer IS NULL THEN order_id ELSE NULL END) AS direct_type_in
+    	COUNT(DISTINCT CASE WHEN utm_campaign = 'brand' THEN order_id ELSE NULL END) AS brand_overall,
+    	COUNT(DISTINCT CASE WHEN utm_source IS NULL AND http_referer IS NOT NULL THEN order_id ELSE NULL END) AS organic_search,
+    	COUNT(DISTINCT CASE WHEN http_referer IS NULL THEN order_id ELSE NULL END) AS direct_type_in
 FROM
 	channels
 GROUP BY 1,2;
@@ -562,7 +558,7 @@ OUTPUT
 	- Interesting. We see product #1 has by far the highest primary product order volume. This alone tells us we should focus our
 		marketing campaigns around product 1. We also see product #4 cross sells the best for all the other products. Marketing should 
 		display product #4 ads on the /cart pages of products 1-3.
-    - These cross sell insights also support the brand growth story. As we introduce more products, the business will be able to 
+	- These cross sell insights also support the brand growth story. As we introduce more products, the business will be able to 
 		cross sell more and increase overall revenue.
 -------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -571,13 +567,13 @@ OUTPUT
 CREATE TEMPORARY TABLE relevant_x_sell
 SELECT
 	orders.order_id,
-    primary_product_id,
-    order_item_id,
-    product_id AS x_sell_product
+    	primary_product_id,
+    	order_item_id,
+    	product_id AS x_sell_product
 FROM
 	orders LEFT JOIN order_items
 	ON orders.order_id = order_items.order_id
-    AND order_items.is_primary_item = 0
+    	AND order_items.is_primary_item = 0
 WHERE
 	orders.created_at BETWEEN '2012-04-01' AND '2014-12-31';
     
@@ -587,27 +583,27 @@ WHERE
 
 SELECT
 	primary_product_id,
-    COUNT(DISTINCT order_id) AS total_orders,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 1 THEN order_id ELSE NULL END) AS _xsold_p1,
+    	COUNT(DISTINCT order_id) AS total_orders,
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 1 THEN order_id ELSE NULL END) AS _xsold_p1,
 	COUNT(DISTINCT CASE WHEN x_sell_product = 2 THEN order_id ELSE NULL END) AS _xsold_p2,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 3 THEN order_id ELSE NULL END) AS _xsold_p3,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 4 THEN order_id ELSE NULL END) AS _xsold_p4,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 1 THEN order_id ELSE NULL END) /
-    COUNT(DISTINCT order_id) AS p1_xsell_rt,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 2 THEN order_id ELSE NULL END) /
-    COUNT(DISTINCT order_id) AS p2_xsell_rt,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 3 THEN order_id ELSE NULL END) /
-    COUNT(DISTINCT order_id) AS p3_xsell_rt,
-    COUNT(DISTINCT CASE WHEN x_sell_product = 4 THEN order_id ELSE NULL END) /
-    COUNT(DISTINCT order_id) AS p4_xsell_rt
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 3 THEN order_id ELSE NULL END) AS _xsold_p3,
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 4 THEN order_id ELSE NULL END) AS _xsold_p4,
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 1 THEN order_id ELSE NULL END) /
+    		COUNT(DISTINCT order_id) AS p1_xsell_rt,
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 2 THEN order_id ELSE NULL END) /
+    		COUNT(DISTINCT order_id) AS p2_xsell_rt,
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 3 THEN order_id ELSE NULL END) /
+    		COUNT(DISTINCT order_id) AS p3_xsell_rt,
+    	COUNT(DISTINCT CASE WHEN x_sell_product = 4 THEN order_id ELSE NULL END) /
+    		COUNT(DISTINCT order_id) AS p4_xsell_rt
 FROM relevant_x_sell
 GROUP BY 1;
             
 primary_product		total_orders	_xsold_p1	_xsold_p2	_xsold_p3	_xsold_p4	p1_xsell_rt		p2_xsell_rt		p3_xsell_rt		p4_xsell_rt
-1					20490			0			693			1356		2414		0.0000			0.0338			0.0662			0.1178
-2					3746			47			0			109			455			0.0125			0.0000			0.0291			0.1215
-3					2382			206			82			0			489			0.0865			0.0344			0.0000			0.2053
-4					143				5			2			3			0			0.0350			0.0140			0.0210			0.0000
+1			20490		0		693		1356		2414		0.0000			0.0338			0.0662			0.1178
+2			3746		47		0		109		455		0.0125			0.0000			0.0291			0.1215
+3			2382		206		82		0		489		0.0865			0.0344			0.0000			0.2053
+4			143		5		2		3		0		0.0350			0.0140			0.0210			0.0000
 ;
 
 /* -------------------------------------------------------------------------------------------------------------------------------------
@@ -617,7 +613,7 @@ primary_product		total_orders	_xsold_p1	_xsold_p2	_xsold_p3	_xsold_p4	p1_xsell_r
 OUTPUT
 	- The results indicates both excellent brand growth and value of repeat customers! Repeat session volume increased dramatically over the 
 		3 years, and repeat session conversion rates display faster growth than first timers. These findings also support our brand growth story.
-        We should  think of incorporating a customer loyalty program to encourage repeat visitors to purchase more.
+       		We should  think of incorporating a customer loyalty program to encourage repeat visitors to purchase more.
 -------------------------------------------------------------------------------------------------------------------------------------*/
 
 -- Here I pulled all website traffic data split between first time and repeat visitors.
@@ -625,11 +621,11 @@ OUTPUT
 CREATE TEMPORARY TABLE repeat_sessions_to_orders
 SELECT
 	YEAR(website_sessions.created_at) AS year,
-    QUARTER(website_sessions.created_at) AS quarter,
+    	QUARTER(website_sessions.created_at) AS quarter,
 	website_sessions.website_session_id,
-    is_repeat_session,
-    order_id,
-    price_usd
+    	is_repeat_session,
+    	order_id,
+    	price_usd
 FROM 
 	website_sessions LEFT JOIN orders
 	ON website_sessions.website_session_id = orders.website_session_id
@@ -642,32 +638,32 @@ SELECT * FROM repeat_sessions_to_orders;
 
 SELECT
 	year,
-    quarter,
-    COUNT(DISTINCT CASE WHEN is_repeat_session = 0 THEN website_session_id ELSE NULL END) AS first_visit_sessions,
-    COUNT(DISTINCT CASE WHEN is_repeat_session = 0 THEN order_id ELSE NULL END) /
+    	quarter,
+    	COUNT(DISTINCT CASE WHEN is_repeat_session = 0 THEN website_session_id ELSE NULL END) AS first_visit_sessions,
+    	COUNT(DISTINCT CASE WHEN is_repeat_session = 0 THEN order_id ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN is_repeat_session = 0 THEN website_session_id ELSE NULL END) AS first_visit_conv_rate,
-    ROUND(SUM(CASE WHEN is_repeat_session = 0 THEN price_usd ELSE NULL END) /
+    	ROUND(SUM(CASE WHEN is_repeat_session = 0 THEN price_usd ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN is_repeat_session = 0 THEN order_id ELSE NULL END),2) AS first_visit_rev_per_order,
-    COUNT(DISTINCT CASE WHEN is_repeat_session = 1 THEN website_session_id ELSE NULL END) AS repeat_visit_sessions,
-    COUNT(DISTINCT CASE WHEN is_repeat_session = 1 THEN order_id ELSE NULL END) /
+    	COUNT(DISTINCT CASE WHEN is_repeat_session = 1 THEN website_session_id ELSE NULL END) AS repeat_visit_sessions,
+    	COUNT(DISTINCT CASE WHEN is_repeat_session = 1 THEN order_id ELSE NULL END) /
 		COUNT(DISTINCT CASE WHEN is_repeat_session = 1 THEN website_session_id ELSE NULL END) AS repeat_visit_conv_rate,
-    ROUND(SUM(CASE WHEN is_repeat_session = 1 THEN price_usd ELSE NULL END) /
+    	ROUND(SUM(CASE WHEN is_repeat_session = 1 THEN price_usd ELSE NULL END) /
 		 COUNT(DISTINCT CASE WHEN is_repeat_session = 1 THEN order_id ELSE NULL END),2) AS repeat_visit_rev_per_order
 FROM
 	repeat_sessions_to_orders
 GROUP BY 1,2;
 
-Yr		Qtr		first_visit_sessions	first_visit_conv_rate	first_visit_rev_per_order	repeat_visit_sessions	repeat_visit_conv_rate	repeat_visit_rev_per_order
-2012	2		10528					0.0285					49.99						905						0.0519					49.99
-2012	3		15249					0.0392					49.99						1643					0.0530					49.99
-2012	4		28895					0.0453					49.99						3371					0.0552					49.99
-2013	1		16269					0.0625					52.28						3564					0.0718					51.59
-2013	2		21429					0.0685					51.50						3316					0.0754					51.79
-2013	3		23509					0.0651					51.72						4154					0.0746					51.80
-2013	4		35075					0.0630					54.59						5465					0.0743					55.38
-2014	1		38704					0.0619					62.16						8075					0.0832					62.18
-2014	2		43471					0.0704					64.32						9658					0.0816					64.58
-2014	3		46335					0.0693					64.60						10806					0.0764					64.07
-2014	4		62250					0.0762					64.00						13184					0.0830					62.89
+Yr	Qtr		first_visit_sessions	first_visit_conv_rate	first_visit_rev_per_order	repeat_visit_sessions	repeat_visit_conv_rate	repeat_visit_rev_per_order
+2012	2		10528			0.0285			49.99				905			0.0519			49.99
+2012	3		15249			0.0392			49.99				1643			0.0530			49.99
+2012	4		28895			0.0453			49.99				3371			0.0552			49.99
+2013	1		16269			0.0625			52.28				3564			0.0718			51.59
+2013	2		21429			0.0685			51.50				3316			0.0754			51.79
+2013	3		23509			0.0651			51.72				4154			0.0746			51.80
+2013	4		35075			0.0630			54.59				5465			0.0743			55.38
+2014	1		38704			0.0619			62.16				8075			0.0832			62.18
+2014	2		43471			0.0704			64.32				9658			0.0816			64.58
+2014	3		46335			0.0693			64.60				10806			0.0764			64.07
+2014	4		62250			0.0762			64.00				13184			0.0830			62.89
 ;
             
