@@ -5,7 +5,7 @@ FIRST SEGMENT EXPLORATORY ANALYSIS
 **********************************
     - First 18 months of data from Maven Factory - ‘2012-04-01’ to ‘2013-09-31’
 
-1) I would like to begin by pulling quarterly trending website sales data to get a broad overview of company performance.
+1.1) I would like to begin by pulling quarterly trending website sales data to get a broad overview of company performance.
 
 	- I have pulled website sessions, orders, and session-to-order conversion rates.
 
@@ -54,7 +54,7 @@ WHERE
 GROUP BY 1;
 
 /*----------------------------------------------------------------------------------------------------------------------------------
-2) I would like to break down the previous data by our two paid advertising sources (gsearch & bsearch) in order to identify
+1.2) I would like to break down the previous data by our two paid advertising sources (gsearch & bsearch) in order to identify
 	where our website traffic volume is coming from.
 
 	- I pulled the same metrics broken out by the two advertising sources (gsearch & bsearch)
@@ -114,7 +114,7 @@ WHERE
 GROUP BY 1;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
-3) I would like to dive deeper into our gsearch advertising campaign and look at which times of the day show more or less activity.
+1.3) I would like to dive deeper into our gsearch advertising campaign and look at which times of the day show more or less activity.
 	We could potentially focus our ad spend on specific hours in order to maximize ROAS.
     
 	- Within our gsearch campaign, I pulled session volume, orders, and conversion rate broken out by hour of day.
@@ -168,7 +168,7 @@ hour	gsearch_sessions	gsearch_orders		conv_rate
 ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
-4) I would like to perform a website page funnel analysis to see how many of our customers are clicking through to each page and where 
+1.4) I would like to perform a website page funnel analysis to see how many of our customers are clicking through to each page and where 
 	they're dropping off. If we find signficantly low conversion rates for specific website pages, we can try split testing different variations.
 
 OUTPUT:
@@ -333,7 +333,7 @@ order_placed		349
 ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
-5) In the last website funnel analysis output, we saw a substantial increase in our landing-to-product page CTR.
+1.5) In the last website funnel analysis output, we saw a substantial increase in our landing-to-product page CTR.
 	I would like dig deeper into that and compare the performance of our four different landing pages.
     
 OUTPUT
@@ -423,7 +423,7 @@ lander_3	5291		2760			0.5216
 ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------
-6) To wrap up this first segment analysis, I want to perform a basic device type analysis.
+1.6) To wrap up this first segment analysis, I want to perform a basic device type analysis.
 	I broke out mobile and desktop website traffic and compared session-to-order conversion rates.
 
 OUTPUT
@@ -455,7 +455,7 @@ SEGMENT TWO ANLAYSIS:
 *********************
 	- Just under 3 years of business data analysis to present to potential investors. ‘2012-04-01’ to ‘2014-12-31’
 
-1) To start I would like to show overall sales volume growth and basic revenue figures.
+2.1) To start I would like to show overall sales volume growth and basic revenue figures.
 	- I pulled quarterly trending session and order volume, CVN rates, rev per order, and rev per session.
 
 OUTPUT
@@ -494,7 +494,7 @@ Yr	Qtr	sessions	orders	conv_rate	rev_per_order	rev_per_session
 ;
 
 /* -------------------------------------------------------------------------------------------------------------------------------------
-2) Although the sales data shows significant growth, it's not clear that the brand itself has grown. Perhaps the majority of our sales
+2.2) Although the sales data shows significant growth, it's not clear that the brand itself has grown. Perhaps the majority of our sales
 	are still from paid advertising. In order to show the brand has grown, we need to look at organic search and direct-type-in search volume.
     
     - I have pulled website traffic volume data for paid sessions (gsearch nonbrand, bsearch nonbrand, and brand_overall)
@@ -552,7 +552,7 @@ Yr		Qtr		gsearch_nonbrand	bsearch_nonbrand	brand_overall	organic_search	direct_t
 ;
     
 /*-------------------------------------------------------------------------------------------------------------------------------------
-3)	I want to follow up on the previous output we saw and run a product cross sell analysis.
+2.3)	I want to follow up on the previous output we saw and run a product cross sell analysis.
 
 OUTPUT
 	- Interesting. We see product #1 has by far the highest primary product order volume. This alone tells us we should focus our
@@ -607,7 +607,7 @@ primary_product		total_orders	_xsold_p1	_xsold_p2	_xsold_p3	_xsold_p4	p1_xsell_r
 ;
 
 /* -------------------------------------------------------------------------------------------------------------------------------------
-4) Lastly I would like to take a look at repeat vs first visitors. How many repeat sessions are we getting and how well are they converting?
+2.4) Lastly I would like to take a look at repeat vs first visitors. How many repeat sessions are we getting and how well are they converting?
 	I compared the two segments by total sessions, session-to-order conversion rate, and revenue-per-order.
     
 OUTPUT
