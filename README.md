@@ -16,39 +16,39 @@ I will split up the analyses into two sections:
 I have commented throughout my SQL scripts to show my analytical thought
 process.
 
-    -   Most of the data outputs will be trending on a quarterly basis to
-        maintain a reasonable frame size of data
+-   Most of the data outputs will be trending on a quarterly basis to
+   maintain a reasonable frame size of data
 
 For the first 18 months of data (SEGMENT 1), I investigated exploratory
 trends including:
 
-    -   Trending website traffic, orders, and session-to-order conversion
-        rates
+-   Trending website traffic, orders, and session-to-order conversion
+    rates
 
-    -   Trending website traffic and sales broken out by advertising
-        campaigns
+-   Trending website traffic and sales broken out by advertising
+     campaigns
 
-    -   Hour of day sales analysis
+-   Hour of day sales analysis
 
-    -   Website pages funnel analysis
+-   Website pages funnel analysis
 
-    -   Landing page click through rate analysis
+-   Landing page click through rate analysis
 
-    -   Device type sales comparison
+-   Device type sales comparison
 
 For the full \~ 3 years of data (SEGMENT 2), I provided some
 comprehensive analysis that the company owner might present to investors
 to demonstrate long term growth. Analyses include:
 
-    -   Trending website traffic, orders, conversion rates, revenue per
-        order, and revenue per session
+-   Trending website traffic, orders, conversion rates, revenue per
+  order, and revenue per session
 
-    -   Trending organic search volume vs. paid search volume
+-   Trending organic search volume vs. paid search volume
 
-    -   Product cross sell analysis
+-   Product cross sell analysis
 
-    -   Trending for repeat vs. first time website visitors on sessions,
-        order conversion rate, and revenue per visit
+-   Trending for repeat vs. first time website visitors on sessions,
+  order conversion rate, and revenue per visit
 
 **[Data Set]**
 
