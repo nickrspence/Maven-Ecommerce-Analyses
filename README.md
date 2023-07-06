@@ -1,8 +1,6 @@
 **Ecommerce Company Performance Analysis**
 
-**[Brief]{.underline}** ![Storytelling
-outline](vertopal_0bfd07644321490dbec793471265e989/media/image1.png){width="0.5555555555555556in"
-height="0.5555555555555556in"}
+**[Brief]**
 
 Maven Analytics created a fictitious eCommerce retail company named
 Maven Factory with a database storing 3 years of business data. I will
@@ -52,20 +50,20 @@ to demonstrate long term growth. Analyses include:
 -   Trending for repeat vs. first time website visitors on sessions,
     order conversion rate, and revenue per visit
 
-**[Data Set]{.underline}**
+**[Data Set]**
 
 -   6-table relational database schema -- see here.
 
 -   Maven Factory sales data from '2012-03-19' to '2015-03-19' -- see
     here.
 
-**[Tools]{.underline}**
+**[Tools]}**
 
 -   MySQL -- view SQL scripts
 
 -   Tableau for data visualization
 
-**[Tableau Visualizations]{.underline}**
+**[Tableau Visualizations]**
 
 -   [SEGMENT 1 dashboard
     here](https://public.tableau.com/views/Nick_Spence_Data_Portfolio/Segment1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
