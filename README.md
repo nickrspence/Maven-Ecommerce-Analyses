@@ -7,17 +7,20 @@ Maven Factory with a database storing 3 years of business data. I will
 pretend to be a data analyst to investigate their performance and offer
 some recommendations based on my findings.
 
+
 I will split up the analyses into two sections:
 
 1)  First 18 months: '2012-04-01' to '2013-09-31'
 
 2)  Full \~ 3 years : '2012-04-01' to '2014-12-31'
 
+
 I have commented throughout my SQL scripts to show my analytical thought
 process.
 
 -   Most of the data outputs will be trending on a quarterly basis to
    maintain a reasonable frame size of data
+
 
 For the first 18 months of data (SEGMENT 1), I investigated exploratory
 trends including:
@@ -35,6 +38,7 @@ trends including:
 -   Landing page click through rate analysis
 
 -   Device type sales comparison
+  
 
 For the full \~ 3 years of data (SEGMENT 2), I provided some
 comprehensive analysis that the company owner might present to investors
@@ -49,6 +53,7 @@ to demonstrate long term growth. Analyses include:
 
 -   Trending for repeat vs. first time website visitors on sessions,
   order conversion rate, and revenue per visit
+
 
 **[Data Set]**
 
@@ -67,7 +72,6 @@ to demonstrate long term growth. Analyses include:
 
 **[Tableau Visualizations]**
 
--   
 
 -   [SEGMENT 1 dashboard
     here](https://public.tableau.com/shared/5N4D4Y2JF?:display_count=n&:origin=viz_share_link)[SEGMENT
