@@ -57,10 +57,9 @@ to demonstrate long term growth. Analyses include:**
 
 <H3> Data Set </H3>
 
--   6-table relational database schema -- see link above in the main files section
+-   6-table relational database schema -- see above in the main files section
 
--   Maven Factory database SQL file-- [see
-    here.]("C:\Users\nickr\OneDrive\Documents\Maven_SQL_project\mavenfactory_full_data_set.zip")
+-   Maven Factory database SQL file -- see above in the main files section
 
 
 <H3> Tools </H3>
