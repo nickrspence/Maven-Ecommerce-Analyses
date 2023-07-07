@@ -59,7 +59,7 @@ to demonstrate long term growth. Analyses include:**
 
 -   6-table relational database schema -- see above in the main files section
 
--   Maven Factory database SQL file -- see above in the main files section
+-   Maven Factory database SQL file -- see above in the main files section (you'll have to download the raw SQL file)
 
 
 <H3> Tools </H3>
