@@ -44,10 +44,6 @@ trends including:**
 comprehensive analysis that the company owner might present to investors
 to demonstrate long term growth. Analyses include:**
 
-<H4>For the full \~ 3 years of data (SEGMENT 2), I provided some
-comprehensive analysis that the company owner might present to investors
-to demonstrate long term growth. Analyses include:</H4>
-
 -   Trending website traffic, orders, conversion rates, revenue per
     order, and revenue per session
 
@@ -61,8 +57,7 @@ to demonstrate long term growth. Analyses include:</H4>
 
 <H3> Data Set </H3>
 
--   6-table relational database schema -- [see
-    here.](Maven_SQL_project/Maven_Factory_Database_Schema.pdf)
+-   6-table relational database schema -- see link above in the main files section
 
 -   Maven Factory database SQL file-- [see
     here.](Maven_SQL_project/mavenfactory_vApril2022.sql)
@@ -80,7 +75,8 @@ to demonstrate long term growth. Analyses include:</H4>
 
 
 -   [SEGMENT 1 dashboard
-    here](https://public.tableau.com/shared/5N4D4Y2JF?:display_count=n&:origin=viz_share_link)[SEGMENT
+    here](https://public.tableau.com/shared/5N4D4Y2JF?:display_count=n&:origin=viz_share_link)
+-    [SEGMENT
     2 dashboard
     here](https://public.tableau.com/views/Maven_Dashboard_2/Segment2?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
