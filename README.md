@@ -1,6 +1,6 @@
 <H2>Ecommerce Company Performance Analysis</H2>
 
-**[Brief]** <H3> Brief </H3>
+<H3> Brief </H3>
 
 Maven Analytics created a fictitious eCommerce retail company named
 Maven Factory with a database storing 3 years of business data. I will
@@ -44,6 +44,10 @@ trends including:**
 comprehensive analysis that the company owner might present to investors
 to demonstrate long term growth. Analyses include:**
 
+<H4>For the full \~ 3 years of data (SEGMENT 2), I provided some
+comprehensive analysis that the company owner might present to investors
+to demonstrate long term growth. Analyses include:</H4>
+
 -   Trending website traffic, orders, conversion rates, revenue per
     order, and revenue per session
 
@@ -55,7 +59,7 @@ to demonstrate long term growth. Analyses include:**
     order conversion rate, and revenue per visit
 
 
-**[Data Set]**
+<H3> Data Set </H3>
 
 -   6-table relational database schema -- [see
     here.](Maven_SQL_project/Maven_Factory_Database_Schema.pdf)
@@ -64,7 +68,7 @@ to demonstrate long term growth. Analyses include:**
     here.](Maven_SQL_project/mavenfactory_vApril2022.sql)
 
 
-**[Tools]**
+<H3> Tools </H3>
 
 -   MySQL -- [view SQL
     scripts](https://github.com/nickrspence/eCommerce-company-performance-analysis/blob/main/FINAL_maven_sql_project.sql)
@@ -72,7 +76,7 @@ to demonstrate long term growth. Analyses include:**
 -   Tableau for data visualization
 
 
-**[Tableau Visualizations]**
+<H3> Tableau Visualizations </H3>
 
 
 -   [SEGMENT 1 dashboard
