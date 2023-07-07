@@ -1,6 +1,6 @@
-**Ecommerce Company Performance Analysis**
+<H3>Ecommerce Company Performance Analysis</H3>
 
-**[Brief]**
+**[Brief]** <H4> Brief </H4>
 
 Maven Analytics created a fictitious eCommerce retail company named
 Maven Factory with a database storing 3 years of business data. I will
