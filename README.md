@@ -57,9 +57,9 @@ to demonstrate long term growth. Analyses include:**
 
 <H3> Data Set </H3>
 
--   6-table relational database schema -- see above in the main files section
+-   6-table relational database schema -- see project files
 
--   Maven Factory database SQL file -- see above in the main files section (you'll have to download the raw SQL file)
+-   CSV zip file -- see project files
 
 
 <H3> Tools </H3>
@@ -73,34 +73,7 @@ to demonstrate long term growth. Analyses include:**
 <H3> Tableau Visualizations </H3>
 
 
--   [SEGMENT 1 dashboard
-    here](https://public.tableau.com/shared/5N4D4Y2JF?:display_count=n&:origin=viz_share_link)
--    [SEGMENT
-    2 dashboard
-    here](https://public.tableau.com/views/Maven_Dashboard_2/Segment2?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
--   Refer to the SQL script for visualization reference numbers:
-
-    -   [Query 1.1 viz
-        here](https://public.tableau.com/views/Viz_1_1_16886685366820/Salesvolumebroad_DATE?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 1.2 viz
-        here](https://public.tableau.com/views/Viz_1_2_16886686023040/Salesvolumebycampaign_DATE?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 1.3 viz
-        here](https://public.tableau.com/views/Maven_Viz_1_3/Hourlysessionsconv?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 1.4 viz
-        here](https://public.tableau.com/views/Maven_Viz_1_4/Websitefunnelanalysis?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 2.1 viz
-        here](https://public.tableau.com/views/Maven_Viz_2_1/Wholesalessummary?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 2.2 viz
-        here](https://public.tableau.com/views/Maven_Viz_2_2/Relativeorganicsearchvolume?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 2.3 viz
-        here](https://public.tableau.com/views/Maven_Viz_2_3/Crosssellanalysis?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
-
-    -   [Query 2.4 viz
-        here](https://public.tableau.com/views/Maven_Viz_2_4/Repeatvisitors?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
+-   [Sales dashboard
+    here](https://public.tableau.com/app/profile/nick.spence3425/viz/Maven_Sales_Dashboard/Dashboard1?publish=yes)
+-    [Website Activity dashboard
+    here](https://public.tableau.com/app/profile/nick.spence3425/viz/Maven_WebsiteActivity_Dashboard/Dashboard2?publish=yes)
