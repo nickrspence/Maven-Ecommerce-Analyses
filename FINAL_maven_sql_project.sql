@@ -1,6 +1,6 @@
 
 /*
-** All Tableau visualizations for individual query outputs are linked in the README, along with both segment dashboards **
+** Both Tableau dashboards are accessible through the links at the bottom of the READ ME, as well as in PNG format in the project files section **
 
 **********************************
 FIRST SEGMENT EXPLORATORY ANALYSIS
@@ -11,7 +11,7 @@ FIRST SEGMENT EXPLORATORY ANALYSIS
 
 	- I have pulled website sessions, orders, and session-to-order conversion rates.
 
-OUTPUT (PLEASE FIND Tableau Viz 1.1 linked in the README)
+OUTPUT
 	- All good indicators! We see tremendous website traffic volume growth shown by total sessions, as well as our session-to-order
 		conversion rate more than doubling in the first 18 months.
 	- The increase in total session volume could be the result of multiple factors including marketing campaigns, brand recognition, etc.
@@ -61,7 +61,7 @@ GROUP BY 1;
 
 	- I pulled the same metrics broken out by the two advertising sources (gsearch & bsearch)
 
-OUTPUT (Find Tableau Viz 1.2 linked in the README)
+OUTPUT
 	- Looks like about 80% of our website traffic volume is coming from our gsearch paid ads.
 	- However the conversion rates for both campaigns peaked at about 7%. We may want to run a follow up test that breaks out
 		both gsearch and bsearch into individual advertisements in order to identify where the most session volume is coming from.
@@ -121,7 +121,7 @@ GROUP BY 1;
     
 	- Within our gsearch campaign, I pulled session volume, orders, and conversion rate broken out by hour of day.
 
-OUTPUT (Find Tableau Viz 1.3 linked in the README)
+OUTPUT
 	- Looks like website traffic is busiest from 10am to 4pm, but conversion rates are fairly stable throughout the day.
 		I would recommend that our marketing director increase our bids during those time periods. We might also want to notify
 		the customer service team that they may want to increase their live customer support chat agents during those time periods 
@@ -173,7 +173,7 @@ hour	gsearch_sessions	gsearch_orders		conv_rate
 1.4) I would like to perform a website page funnel analysis to see how many of our customers are clicking through to each page and where 
 	they're dropping off. If we find signficantly low conversion rates for specific website pages, we can try split testing different variations.
 
-OUTPUT (Find Tableau Viz 1.4 linked in the README)
+OUTPUT
 	- We found some helpful data here! Our landing-to-products page CTR shows about a 40% increase over the 18 months.
 		I know the marketing team tested a few different landing pages, so we can dig deeper to see which performed best.
 	- Another interesting finding is the rather low cart-to-shipping page CTR. It has about a 45% conversion rate,
@@ -338,7 +338,7 @@ order_placed		349
 1.5) In the last website funnel analysis output, we saw a substantial increase in our landing-to-product page CTR.
 	I would like dig deeper into that and compare the performance of our four different landing pages.
     
-OUTPUT (No Viz)
+OUTPUT
 	- We didn't find any signficant differences in CTR for our different landing pages.
 		We see lander_0, lander_2, and lander_3 have similar CTRs, while lander_1 showed a slightly lower CTR.
 		This would indicate the increase in CTR is likely due to brand recognition versus page specific design.
@@ -428,7 +428,7 @@ lander_3	5291		2760			0.5216
 1.6) To wrap up this first segment analysis, I want to perform a basic device type analysis.
 	I broke out mobile and desktop website traffic and compared session-to-order conversion rates.
 
-OUTPUT (No Viz)
+OUTPUT
 	- Interesting, desktop users make up 75% of our website traffic volume, and have almost a 3x higher session-to-order conversion rate.
 		We definitely would need to dive deeper into this comparison and identify which factors are accounting for the difference.
 		The website manager will likely want to split test different mobile interface landing pages in order to increase the conversion rate.
@@ -460,7 +460,7 @@ SEGMENT TWO ANLAYSIS:
 2.1) To start I would like to show overall sales volume growth and basic revenue figures.
 	- I pulled quarterly trending session and order volume, CVN rates, rev per order, and rev per session.
 
-OUTPUT (Find Tableau Viz 2.1 linked in the README)
+OUTPUT
 	- All our key metrics indicated significant growth! Particularly interesting is the increase in both revenue per order
 		and revenue per session over the 3 years. This indicates the business is not only getting higher order volume, but also
 		more items sold per order. I'll probably take a look at common cross selling products and repeat customers in future analyses.
@@ -502,7 +502,7 @@ Yr	Qtr	sessions	orders	conv_rate	rev_per_order	rev_per_session
     - I have pulled website traffic volume data for paid sessions (gsearch nonbrand, bsearch nonbrand, and brand_overall)
 		and organic sessions (organic_search and direct_type_in). 
     
-OUTPUT (Find Tableau Viz 2.2 linked in the README)
+OUTPUT
 	- Terrific! It looks like our organic website search volume have grown at the same rate as our paid website taffic.
 -------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -556,7 +556,7 @@ Yr		Qtr		gsearch_nonbrand	bsearch_nonbrand	brand_overall	organic_search	direct_t
 /*-------------------------------------------------------------------------------------------------------------------------------------
 2.3)	I want to follow up on the previous output we saw and run a product cross sell analysis.
 
-OUTPUT (Find Tableau Viz 2.3 linked in the README)
+OUTPUT
 	- Interesting. We see product #1 has by far the highest primary product order volume. This alone tells us we should focus our
 		marketing campaigns around product 1. We also see product #4 cross sells the best for all the other products. Marketing should 
 		display product #4 ads on the /cart pages of products 1-3.
@@ -612,7 +612,7 @@ primary_product		total_orders	_xsold_p1	_xsold_p2	_xsold_p3	_xsold_p4	p1_xsell_r
 2.4) Lastly I would like to take a look at repeat vs first visitors. How many repeat sessions are we getting and how well are they converting?
 	I compared the two segments by total sessions, session-to-order conversion rate, and revenue-per-order.
     
-OUTPUT (Find Tableau Viz 2.4 linked in the README)
+OUTPUT
 	- The results indicates both excellent brand growth and value of repeat customers! Repeat session volume increased dramatically over the 
 		3 years, and repeat session conversion rates display faster growth than first timers. These findings also support our brand growth story.
        		We should  think of incorporating a customer loyalty program to encourage repeat visitors to purchase more.
