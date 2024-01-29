@@ -2,9 +2,9 @@
 
 <H3> Brief </H3>
 
-Maven Analytics created a fictitious eCommerce retail company named
+Maven Analytics educational company created a fictitious eCommerce retail store named
 Maven Factory with a database storing 3 years of business data. I will
-pretend to be a data analyst to investigate their performance and offer
+act as a data analyst to investigate their performance and offer
 some recommendations based on my findings.
 
 
