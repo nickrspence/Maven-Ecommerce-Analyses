@@ -3,7 +3,7 @@
 <H3> Brief </H3>
 
 Maven Analytics educational company created a fictitious eCommerce retail store named
-Maven Factory with a database storing 3 years of business data. I will
+Maven Factory with a database storing 32k orders within 3 years of business data. I will
 act as a data analyst to investigate their performance and offer
 some recommendations based on my findings.
 
@@ -57,7 +57,7 @@ to demonstrate long term growth. Analyses include:**
 
 <H3> Data Set </H3>
 
--   6-table relational database schema -- see project files
+-   Created 6-table relational database with key mapping, EER diagram, constraints -- see project files
 
 -   CSV zip file -- see project files
 
@@ -67,7 +67,7 @@ to demonstrate long term growth. Analyses include:**
 -   MySQL -- [view SQL
     scripts](https://github.com/nickrspence/eCommerce-company-performance-analysis/blob/main/FINAL_maven_sql_project.sql)
 
--   Tableau for data visualization
+-   Tableau: ETL, key mapping, EER diagram, dynamic dashboard, KPIs, slicers
 
 
 <H3> Tableau Visualizations </H3>
